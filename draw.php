@@ -2,7 +2,7 @@
     
 <a class="btn anim" href="index.php" id="browseBtn">Browse</a>
 
-<h1><b>10s</b> drawing</h1>
+<h1 class="anim"><b>10s</b> drawing</h1>
 
 <div id="drawBox" class="anim">
   
@@ -28,8 +28,9 @@
         <input type="text" name="pseudo" placeholder="Your name" />
         
         <input type="submit" value="Save" class="btn" />
-        <a href="draw.php" class="btn">Retry</a>
+        <a href="draw.php" class="btn retry">Retry</a>
       </form>
+      <p class="formError anim">All fields are required</p>
     </div>
   </div>
 </div>
@@ -38,81 +39,14 @@
 <script type="text/javascript">
   window.TEN = {};
 </script>
+<script type="text/javascript" src="js/libs/modernizr.js"></script>
 <script type="text/javascript" src="js/libs/jquery-2.0.3.min.js"></script>
 <script type="text/javascript" src="js/libs/jquery-extend.js"></script>
+<script type="text/javascript" src="js/libs/jquery.cookie.js"></script>
 <script type="text/javascript" src="js/libs/paper.js"></script>
 
 <script type="text/javascript" src="js/classes/Draw.js"></script>
 
-<script>
-
-  $(window).load(function() {
-    $('body').addClass('loaded');
-    
-    var $box = $('#drawBox'),
-        $pres = $box.find('.pres'),
-        $startBtn = $pres.find('.btn'),
-        $compte = $box.find('.compte'),
-        $compteP = $compte.find('p'),
-        currentCompte = 0,
-        $bottom = $box.find('.bottom'),
-        $saveForm = $('#saveForm'),
-        draw = null;
-    
-    // hide pres
-    $startBtn.on('click', function() {
-      
-      if(!$pres.hasClass('hidden')) {
-        $pres.addClass('hidden');
-        setTimeout(function() {
-          $pres.remove();
-          nextCompte();
-        }, 500);
-      }
-      
-      return false;
-    });
-    
-    // compte a rebours avant draw
-    function nextCompte() {
-      $compteP.removeClass('active');
-      
-      if(currentCompte == 3) {
-        $box.addClass('active');
-        setTimeout(function() {
-          $compte.remove();
-          startDrawing();
-        }, 250);
-        return;
-      }
-      
-      $compteP.eq(currentCompte).addClass('active');
-      
-      setTimeout(nextCompte, 1000);
-      
-      currentCompte++;
-    }
-    
-    // init le dessin
-    function startDrawing() {
-      draw = new TEN.Draw();
-      $bottom.addClass('progress');
-      setTimeout(function() {
-        stopDrawing();
-      }, 12000);
-    }
-    
-    // stop le dessin et init formulaire save
-    function stopDrawing() {
-      draw.stop();
-      $bottom.addClass('end');
-      $saveForm.on('submit', function() {
-        console.log($saveForm.serializeObject());
-        return false;
-      });
-    }
-    
-  });
-</script>
+<script type="text/javascript" src="js/draw.js"></script>
     
 <?php include(dirname(__FILE__).'/includes/footer.php'); ?>

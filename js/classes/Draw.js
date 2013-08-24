@@ -1,5 +1,5 @@
 
-(function(TEN, paper, $) {
+(function(TEN, paper, $, Modenizr) {
   
   "use strict";
   
@@ -7,13 +7,19 @@
     
     this.canvas = $('#drawStage');
     paper.setup(this.canvas[0]);
+    this.pathString = '';
+    
+    this.downEvent = Modenizr.touch ? 'touchstart' : 'mousedown';
+    this.upEvent = Modenizr.touch ? 'touchend' : 'mouseup';
+    this.moveEvent = Modenizr.touch ? 'touchmove' : 'mousemove';
     
     var t = this;
-    this.canvas.on('mousedown', function(e) {
+    
+    this.canvas.on(this.downEvent, function(e) {
       t.startDraw(e);
       return false;
     });
-    $('body').on('mouseup', function(e) {
+    $('body').on(this.upEvent, function(e) {
       t.endDraw();
       return false;
     });
@@ -31,7 +37,7 @@
     });
     
     var t = this;
-    this.canvas.on('mousemove', function(e) {
+    this.canvas.on(this.moveEvent, function(e) {
       t.drawTo(e);
       return false;
     });
@@ -40,11 +46,15 @@
   TEN.Draw.prototype.endDraw = function() {
     if(this.path != null) {
       this.path.simplify(10);
-      console.log(this.path.pathData);
+      
+      if(this.pathString != '') this.pathString += ';';
+      this.pathString += this.path.pathData;
+      
       this.path = null;
     }
     
-    this.canvas.off('mousemove');
+    this.canvas.off(this.moveEvent);
+    paper.view.draw();
   }
   
   TEN.Draw.prototype.drawTo = function(e) {
@@ -56,18 +66,21 @@
   
   TEN.Draw.prototype.stop = function() {
     this.endDraw();
-    this.canvas.off('mousedown');
-    $('body').off('mouseup');
+    this.canvas.off(this.downEvent);
+    $('body').off(this.upEvent);
   }
   
   TEN.Draw.prototype.getEventPos = function(e) {
     
     var x, y;
     
-    x = e.pageX - this.canvas.offset().left;
-    y = e.pageY - this.canvas.offset().top;
+    x = e.pageX ? e.pageX : e.originalEvent.touches[0].pageX;
+    y = e.pageY ? e.pageY : e.originalEvent.touches[0].pageY;
+    
+    x = x - this.canvas.offset().left;
+    y = y - this.canvas.offset().top;
     
     return new paper.Point(x, y);
   }
   
-})(TEN, paper, jQuery);
+})(TEN, paper, jQuery, Modernizr);
