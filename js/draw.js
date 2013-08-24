@@ -13,6 +13,7 @@ $(window).load(function() {
       $retryBtn = $saveForm.find('.retry'),
       $formError = $bottom.find('.formError'),
       saving = false,
+      $browseBtn = $('#browseBtn'),
       draw = null;
 
   // hide pres
@@ -100,6 +101,16 @@ $(window).load(function() {
     $('body').removeClass('loaded');
     setTimeout(function() {
       window.location.reload();
+    }, 500);
+    return false;
+  });
+  
+  
+  $browseBtn.on('click', function(e) {
+    $browseBtn.off('click');
+    $('body').removeClass('loaded');
+    setTimeout(function() {
+      window.location = 'http://'+window.location.hostname+'/index.php';
     }, 500);
     return false;
   });

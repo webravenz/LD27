@@ -1,4 +1,8 @@
-<?php include(dirname(__FILE__).'/includes/header.php'); ?>
+<?php include(dirname(__FILE__).'/includes/header.php'); 
+
+$themeId = rand(1, count($THEMES) - 1);
+$themePhrase = $THEMES[$themeId]['phrase'];
+?>
     
 <a class="btn anim" href="index.php" id="browseBtn">Browse</a>
 
@@ -7,7 +11,7 @@
 <div id="drawBox" class="anim">
   
   <div class="pres anim">
-    <p>You've got <b>10 seconds</b><br /> to draw whatever you want</p>
+    <p>You've got <b>10 seconds</b><br /> to draw <b><?php echo $themePhrase; ?></b></p>
     <a class="btn" href="#">Start !</a>
   </div>
   
@@ -23,9 +27,11 @@
     <div class="back"></div>
     <div class="front anim">
       <form method="post" id="saveForm">
-        <input type="text" name="name" placeholder="Drawing name" />
+        <input type="text" name="name" placeholder="Drawing name" maxlenght="25" />
         by
-        <input type="text" name="pseudo" placeholder="Your name" />
+        <input type="text" name="pseudo" placeholder="Your name" maxlength="15" />
+        
+        <input type="hidden" name="theme_id" value="<?php echo $themeId; ?>" />
         
         <input type="submit" value="Save" class="btn" />
         <a href="draw.php" class="btn retry">Retry</a>

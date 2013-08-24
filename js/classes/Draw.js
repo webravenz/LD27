@@ -31,7 +31,7 @@
     
     this.path = new paper.Path({
       segments: [pos],
-      strokeColor: '#4083f2',
+      strokeColor: '#01abdb',
       strokeWidth: 5,
       strokeCap: 'round'
     });

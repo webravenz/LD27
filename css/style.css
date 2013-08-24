@@ -31,6 +31,10 @@ h1 b {
   color: #01abdb;
 }
 
+.clear {
+  clear: both;
+}
+
 .btn {
   background: #01abdb;
   display: inline-block;
@@ -148,6 +152,9 @@ h1 b {
   font-size: 20px;
   line-height: 1.4;
   margin-bottom: 30px;
+}
+#drawBox .pres p b {
+  color: #01abdb;
 }
 
 #drawBox .compte {
@@ -267,4 +274,124 @@ input:-moz-placeholder { color:#f00; }
 #drawStage {
   width: 600px;
   height: 400px;
+}
+
+.categories {
+  padding: 20px 50px;
+  padding-top: 30px;
+  opacity: 0;
+  transform: translate3d(0,-10px,0);
+  -moz-transform: translate3d(0,-10px,0);
+  -webkit-transform: translate3d(0,-10px,0);
+}
+.loaded .categories {
+  opacity: 1;
+  transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -webkit-transform: translate3d(0,0,0);
+}
+
+.categories p, .categories a {
+  display: block;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.categories p {
+  font-size: 24px;
+  color: #666;
+  line-height: 32px;
+  margin-right: 30px;
+}
+
+.categories a {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #666;
+  text-decoration: none;
+}
+.categories a:hover {
+  color: #01abdb;
+}
+.categories a.selected {
+  background: #01abdb;
+  color: #FFF;
+}
+
+.drawsList {
+  padding: 10px 30px;
+  opacity: 0;
+  transform: translate3d(0,10px,0);
+  -moz-transform: translate3d(0,10px,0);
+  -webkit-transform: translate3d(0,10px,0);
+}
+.loaded .drawsList {
+  opacity: 1;
+  transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -webkit-transform: translate3d(0,0,0);
+}
+
+.drawsList > a {
+  display: block;
+  width: 300px;
+  height: 240px;
+  background: #FFF;
+  float: left;
+  position: relative;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.drawsList > a:hover {
+  transform: translate3d(0, -5px, 0);
+  -webkit-transform: translate3d(0, -5px, 0);
+  -moz-transform: translate3d(0, -5px, 0);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.drawsList > a svg {
+  width: 600px;
+  height: 400px;
+  transform: scale(0.5);
+  -webkit-transform: scale(0.5);
+  -moz-transform: scale(0.5);
+  position: absolute;
+  left: -150px;
+  top: -100px;
+}
+
+.drawsList > a path {
+  fill: none; 
+  stroke:#01abdb; 
+  stroke-width: 5;
+  transition: stroke .5s ease;
+  -moz-transition: stroke .5s ease;
+  -webkit-transition: stroke .5s ease;
+}
+.drawsList > a:hover path {
+  stroke:#fd9e05; 
+}
+
+.drawsList > a .infos {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  line-height: 1;
+  padding: 4px 10px;
+  background: #01abdb;
+  color: #FFF;
+  font-size: 16px;
+}
+.drawsList > a:hover .infos {
+  background: #fd9e05;
+}
+.drawsList > a .infos span {
+  font-size: 12px;
+  opacity: 0.6;
 }
