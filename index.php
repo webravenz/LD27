@@ -22,7 +22,7 @@ $currentCat = isset($_GET['cat']) ? $_GET['cat'] : '';
 <div class="drawsList anim">
 <?php
 
-$nbParPage = 1;
+$nbParPage = 16;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
 $req = new WZSelectRequest('draw');
@@ -42,13 +42,17 @@ foreach($draws as $draw) {
   $paths = explode(';', $draw['draw_path']);
   ?>
   
-  <a href="view.php?id=<?php echo $draw['draw_id']; ?>" class="anim">
+  <a href="#<?php echo $draw['draw_id']; ?>" data-id="<?php echo $draw['draw_id']; ?>" class="anim">
     <svg>
       <?php foreach($paths as $path) { ?>
         <path d="<?php echo $path; ?>" />
       <?php } ?>
     </svg>
-    <span class="infos anim"><?php echo $draw['draw_name']; ?> <br /><span>by <?php echo $draw['draw_pseudo']; ?></span></span>
+    <span class="infos anim">
+      <?php echo $draw['draw_name']; ?> <br />
+      <span>by <?php echo $draw['draw_pseudo']; ?></span>
+      <span class="category"><?php echo $THEMES[$draw['theme_id']]['name']; ?></span>
+    </span>
   </a>
 
   <?php
@@ -58,11 +62,21 @@ foreach($draws as $draw) {
   <div class="clear"></div>
   
   <div class="pagination">
-    <?php if($page > 1) echo '<a href="http://'.$_SERVER['HTTP_HOST'].'/index.php?page='.($page - 1).'&cat='.$currentCat.'">Previous</a>'; ?>
-    <?php if($page * $nbParPage < $total) echo '<a href="http://'.$_SERVER['HTTP_HOST'].'/index.php?page='.($page + 1).'&cat='.$currentCat.'">Next</a>'; ?>
+    <?php if($page > 1) echo '<a href="http://'.$_SERVER['HTTP_HOST'].'/index.php?page='.($page - 1).'&cat='.$currentCat.'" class="btn prev">Prev</a>'; ?>
+    <?php if($page * $nbParPage < $total) echo '<a href="http://'.$_SERVER['HTTP_HOST'].'/index.php?page='.($page + 1).'&cat='.$currentCat.'" class="btn next">Next</a>'; ?>
   </div>
 </div>
 
+<div id="detail" class="anim">
+  <a href="#" class="anim close">&times</a>
+  <div class="content anim">
+    
+  </div>
+</div>
+
+<footer class="anim">
+  by <a href="http://cmegnin.fr/" target="_blank">Webravenz</a> for <a href="http://www.ludumdare.com/compo/" target="_blank">Ludum Dare 27</a>
+</footer>
 
 <script type="text/javascript">
   window.TEN = {};

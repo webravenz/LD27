@@ -12,6 +12,7 @@
     this.downEvent = Modenizr.touch ? 'touchstart' : 'mousedown';
     this.upEvent = Modenizr.touch ? 'touchend' : 'mouseup';
     this.moveEvent = Modenizr.touch ? 'touchmove' : 'mousemove';
+    this.canDraw = true;
     
     var t = this;
     
@@ -36,6 +37,7 @@
       strokeCap: 'round'
     });
     
+    this.canDraw = true;
     var t = this;
     this.canvas.on(this.moveEvent, function(e) {
       t.drawTo(e);
@@ -58,10 +60,18 @@
   }
   
   TEN.Draw.prototype.drawTo = function(e) {
-    var pos = this.getEventPos(e);
-    
-    this.path.add(pos);
-    paper.view.draw();
+    if(this.canDraw) {
+      var pos = this.getEventPos(e);
+
+      this.path.add(pos);
+      paper.view.draw();
+
+      this.canDraw = false;
+      var t = this;
+      setTimeout(function() {
+        t.canDraw = true;
+      }, 10);
+    }
   }
   
   TEN.Draw.prototype.stop = function() {

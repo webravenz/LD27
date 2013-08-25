@@ -84,7 +84,8 @@ $(window).load(function() {
           $.post('saveDraw.php', params, function(data) {
             $('body').removeClass('loaded');
             setTimeout(function() {
-              window.location = 'http://'+window.location.hostname+'/view.php?id='+data;
+              //window.location = 'http://'+window.location.hostname+'/view.php?id='+data;
+              window.location = 'http://'+window.location.hostname+'/index.php';
             }, 500);
           });
         }

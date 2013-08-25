@@ -9,6 +9,10 @@ $THEMES = array(
     array('name' => 'Landscapes', 'phrase' => 'a landscape'),
     array('name' => 'Monsters', 'phrase' => 'a monster'),
     array('name' => 'Objects', 'phrase' => 'an object'),
-    array('name' => 'Vehicles', 'phrase' => 'a vehicle')
+    array('name' => 'Vehicles', 'phrase' => 'a vehicle'),
+    array('name' => 'Monuments', 'phrase' => 'a monument'),
+    array('name' => 'Movies', 'phrase' => 'a movie'),
+    array('name' => 'Videogames', 'phrase' => 'a videogame'),
+    array('name' => 'Dreams', 'phrase' => 'a dream')
 )
 ?>
