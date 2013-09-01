@@ -75,7 +75,7 @@ foreach($draws as $draw) {
 </div>
 
 <footer class="anim">
-  by <a href="http://cmegnin.fr/" target="_blank">Webravenz</a> for <a href="http://www.ludumdare.com/compo/" target="_blank">Ludum Dare 27</a>
+  by <a href="https://twitter.com/Webravenz" target="_blank">Webravenz</a> for <a href="http://www.ludumdare.com/compo/" target="_blank">Ludum Dare 27</a>
 </footer>
 
 <script type="text/javascript">

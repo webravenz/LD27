@@ -24,20 +24,26 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
       <?php } ?>
     </svg>
     <div class="infos anim">
-      <?php echo $draw['draw_name']; ?> <br />
+      <b id="detailTitle"><?php echo $draw['draw_name']; ?></b> <br />
       <span>by <?php echo $draw['draw_pseudo']; ?></span>
+      <a class="twitter" href="#"
+         onclick="
+          window.open(
+            'http://twitter.com/share?text=<?php echo urlencode($draw['draw_name'].' by '.$draw['draw_pseudo'].' on #10sdrawing ! '); ?>&amp;url='+encodeURIComponent(location.href), 
+            'twitter-share-dialog', 
+            'width=626,height=436'); 
+          return false;"></a>
+      <a href="#" class="facebook"
+        onclick="
+          window.open(
+            'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href)+'&amp;p[title]=<?php echo urlencode($draw['draw_name'].' | 10s drawing'); ?>', 
+            'facebook-share-dialog', 
+            'width=626,height=436'); 
+          return false;">
+      </a>
       <span class="category"><?php echo $THEMES[$draw['theme_id']]['name']; ?></span>
     </div>
     
-    <a href="#" class="facebook"
-      onclick="
-        window.open(
-          'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 
-          'facebook-share-dialog', 
-          'width=626,height=436'); 
-        return false;">
-      
-    </a>
 
     <?php
     

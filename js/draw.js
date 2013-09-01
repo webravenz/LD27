@@ -85,7 +85,7 @@ $(window).load(function() {
             $('body').removeClass('loaded');
             setTimeout(function() {
               //window.location = 'http://'+window.location.hostname+'/view.php?id='+data;
-              window.location = 'http://'+window.location.hostname+'/index.php';
+              window.location = 'http://'+window.location.hostname+'/index.php#'+data;
             }, 500);
           });
         }

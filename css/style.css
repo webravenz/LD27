@@ -421,6 +421,11 @@ input:-moz-placeholder { color:#FFF; opacity: 0.5; }
   opacity: 0.6;
 }
 
+#detail svg {
+  width: 600px;
+  height: 400px;
+}
+
 .pagination {
   margin: 20px 0;
   text-align: center;
@@ -529,4 +534,18 @@ footer a {
   color: #FFF;
   text-decoration: none;
   font-family: Arial, Helvetica;
+}
+
+#detail .facebook, #detail .twitter {
+  display: block;
+  width: 29px;
+  height: 29px;
+  background: url(../images/facebook.png);
+  float: right;
+  margin-top: -12px;
+  margin-left: 20px;
+}
+#detail .twitter {
+  background: url(../images/twitter.png);
+  margin-left: 10px;
 }
